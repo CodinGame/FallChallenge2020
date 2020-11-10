@@ -1,0 +1,614 @@
+{
+  "frames": {
+    "ANIM_TOUILLE0001": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0003": {
+      "frame": {
+        "x": 329,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0005": {
+      "frame": {
+        "x": 0,
+        "y": 336,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0007": {
+      "frame": {
+        "x": 329,
+        "y": 336,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0009": {
+      "frame": {
+        "x": 658,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0011": {
+      "frame": {
+        "x": 658,
+        "y": 336,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0013": {
+      "frame": {
+        "x": 0,
+        "y": 672,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0015": {
+      "frame": {
+        "x": 329,
+        "y": 672,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0017": {
+      "frame": {
+        "x": 658,
+        "y": 672,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0019": {
+      "frame": {
+        "x": 987,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0021": {
+      "frame": {
+        "x": 987,
+        "y": 336,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0023": {
+      "frame": {
+        "x": 987,
+        "y": 672,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0025": {
+      "frame": {
+        "x": 0,
+        "y": 1008,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0027": {
+      "frame": {
+        "x": 329,
+        "y": 1008,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0029": {
+      "frame": {
+        "x": 658,
+        "y": 1008,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0031": {
+      "frame": {
+        "x": 987,
+        "y": 1008,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0033": {
+      "frame": {
+        "x": 1316,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0035": {
+      "frame": {
+        "x": 1316,
+        "y": 336,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0037": {
+      "frame": {
+        "x": 1316,
+        "y": 672,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0039": {
+      "frame": {
+        "x": 1316,
+        "y": 1008,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0041": {
+      "frame": {
+        "x": 0,
+        "y": 1344,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0043": {
+      "frame": {
+        "x": 329,
+        "y": 1344,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0045": {
+      "frame": {
+        "x": 658,
+        "y": 1344,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0047": {
+      "frame": {
+        "x": 987,
+        "y": 1344,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0049": {
+      "frame": {
+        "x": 1316,
+        "y": 1344,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0051": {
+      "frame": {
+        "x": 1645,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0053": {
+      "frame": {
+        "x": 1645,
+        "y": 336,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0055": {
+      "frame": {
+        "x": 1645,
+        "y": 672,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0057": {
+      "frame": {
+        "x": 1645,
+        "y": 1008,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    },
+    "ANIM_TOUILLE0059": {
+      "frame": {
+        "x": 1645,
+        "y": 1344,
+        "w": 329,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 329,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 329,
+        "h": 336
+      }
+    }
+  },
+  "meta": {
+    "app": "https://www.leshylabs.com/apps/sstool/",
+    "version": "Leshy SpriteSheet Tool v0.8.4",
+    "image": "stir_0.png",
+    "size": {
+      "w": 1974,
+      "h": 1680
+    },
+    "scale": 1
+  }
+}
