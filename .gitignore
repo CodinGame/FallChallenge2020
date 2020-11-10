@@ -1,0 +1,12 @@
+.factorypath
+.pydevproject
+/.classpath
+/.project
+/.settings/
+/bin/
+/target/
+src/main/resources/view/.eslintrc.js
+src/main/resources/view/node_modules/
+src/main/resources/view/package-lock.json
+src/main/resources/view/package.json
+src/main/resources/view/tsconfig.json

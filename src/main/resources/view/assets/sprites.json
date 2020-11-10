@@ -1,0 +1,234 @@
+{
+  "frames": {
+    "Cadre": {
+      "frame": {
+        "x": 464,
+        "y": 769,
+        "w": 241,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 241,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 241,
+        "h": 74
+      }
+    },
+    "Forme_Commandes": {
+      "frame": {
+        "x": 0,
+        "y": 769,
+        "w": 318,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 318,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 318,
+        "h": 128
+      }
+    },
+    "Forme_Recettes_Apprises": {
+      "frame": {
+        "x": 289,
+        "y": 898,
+        "w": 229,
+        "h": 62
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 229,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 229,
+        "h": 62
+      }
+    },
+    "Forme_Recettes_Dispo": {
+      "frame": {
+        "x": 0,
+        "y": 898,
+        "w": 288,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 288,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 288,
+        "h": 72
+      }
+    },
+    "HUD_0": {
+      "frame": {
+        "x": 0,
+        "y": 325,
+        "w": 709,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 709,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 709,
+        "h": 223
+      }
+    },
+    "HUD_1": {
+      "frame": {
+        "x": 0,
+        "y": 549,
+        "w": 691,
+        "h": 219
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 691,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 691,
+        "h": 219
+      }
+    },
+    "Item-1": {
+      "frame": {
+        "x": 391,
+        "y": 769,
+        "w": 72,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 75
+      }
+    },
+    "Item-2": {
+      "frame": {
+        "x": 692,
+        "y": 549,
+        "w": 74,
+        "h": 73
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 74,
+        "h": 73
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 73
+      }
+    },
+    "Item-3": {
+      "frame": {
+        "x": 319,
+        "y": 769,
+        "w": 71,
+        "h": 78
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 71,
+        "h": 78
+      },
+      "sourceSize": {
+        "w": 71,
+        "h": 78
+      }
+    },
+    "Item-4": {
+      "frame": {
+        "x": 706,
+        "y": 769,
+        "w": 70,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 74
+      }
+    },
+    "logo.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 324
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 324
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 324
+      }
+    }
+  },
+  "meta": {
+    "app": "https://www.leshylabs.com/apps/sstool/",
+    "version": "Leshy SpriteSheet Tool v0.8.4",
+    "image": "spritesheet.png",
+    "size": {
+      "w": 800,
+      "h": 970
+    },
+    "scale": 1
+  }
+}
