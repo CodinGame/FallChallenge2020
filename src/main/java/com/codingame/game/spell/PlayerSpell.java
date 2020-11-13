@@ -21,7 +21,7 @@ public class PlayerSpell extends Spell {
     }
 
     public PlayerSpell(TomeSpell learnt, Player owner) {
-        this(new Recipe(learnt.recipe), owner, true);
+        this(new Recipe(learnt.recipe), owner, learnt.isRepeatable());
     }
 
     @Override
