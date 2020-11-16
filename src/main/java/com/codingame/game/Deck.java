@@ -29,7 +29,7 @@ public class Deck {
         tome.add(new TomeSpell(new Recipe(0, 2, 0, 0)));
         tome.add(new TomeSpell(new Recipe(1, 0, 1, 0)));
         tome.add(new TomeSpell(new Recipe(-2, 0, 1, 0)));
-        tome.add(new TomeSpell(new Recipe(-1, 0, -1, 1)));
+        tome.add(new TomeSpell(new Recipe(-1, -1, 0, 1)));
         tome.add(new TomeSpell(new Recipe(0, 2, -1, 0)));
         tome.add(new TomeSpell(new Recipe(2, -2, 0, 1)));
         tome.add(new TomeSpell(new Recipe(-3, 1, 1, 0)));
