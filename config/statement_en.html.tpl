@@ -307,7 +307,7 @@
 
         <p style="margin-bottom: 10px">The <b>magic tome</b> the witch sisters are using is quite volatile. Once a witch
           has memorised a spell, that
-          spell <b>dissapears</b> from the tome completely and is no longer available to the other witch.</p>
+          spell <b>disappears</b> from the tome completely and is no longer available to the other witch.</p>
         <p style="margin-bottom: 10px">To preserve a sense of fairness in their sisterly spat, the witches have devised
           a system:</p>
         <ul>
@@ -711,7 +711,7 @@
               <action>CAST id times</action>: your witch casts a repeatable spell the given amount of times.
             </li>
             <li>
-              <action>LEARN id</action>: your witch attemps to learn the tome spell with the given id.
+              <action>LEARN id</action>: your witch attempts to learn the tome spell with the given id.
             </li>
             <!-- END -->
 
