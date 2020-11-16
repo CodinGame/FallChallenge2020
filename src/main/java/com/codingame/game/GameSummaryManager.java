@@ -37,7 +37,7 @@ public class GameSummaryManager {
 
     public void addPlayerSpellLearn(Player player, Spell spell) {
         if (spell.getStock() > 0) {
-            if (player.getInventory().getTotal() > Game.MAX_SPACE) {
+            if (player.getInventory().getTotal() >= Game.MAX_SPACE) {
                 lines.add(
                     String.format(
                         "%s learnt spell %d, the taxed ingredients were lost because their inventory is full.",
