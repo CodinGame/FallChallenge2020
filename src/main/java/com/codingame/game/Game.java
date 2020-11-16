@@ -168,6 +168,30 @@ public class Game {
         }
     }
 
+    public int getBonusValue(DeliverySpell spell) {
+        if (getBonusAmount(spell) == 0) {
+            return 0;
+        }
+        
+        int index = deliveries.indexOf(spell);
+
+        if (index < 0 || index > 1) {
+            return 0;
+        }
+
+        return bonusValue[index];
+    }
+
+    public int getBonusAmount(DeliverySpell spell) {
+        int index = deliveries.indexOf(spell);
+
+        if (index < 0 || index > 1) {
+            return 0;
+        }
+
+        return bonus[index];
+    }
+
     public List<String> getCurrentFrameInfoFor(Player player) {
 
         Player foe = gameManager.getPlayer(1 - player.getIndex());
@@ -178,8 +202,25 @@ public class Game {
             )
         );
 
+        deliveries.stream()
+            .forEach(spell -> {
+                lines.add(
+                    String.format(
+                        "%d %s %s %d %d %d %d %d",
+                        spell.getId(),
+                        SpellType.BREW.name(),
+                        spell.recipe.toPlayerString(),
+                        getScoreOf(spell),
+                        getBonusValue(spell),
+                        getBonusAmount(spell),
+                        spell.isActive() ? 1 : 0,
+                        spell.isRepeatable() ? 1 : 0
+
+                    )
+                );
+            });
+
         Stream.of(
-            deliveries,
             tome,
             player.getSpells(),
             foe.getSpells()
@@ -201,6 +242,7 @@ public class Game {
                     )
                 );
             });
+
         // scores
         Stream.of(player, foe).forEach(p -> {
             lines.add(String.format("%s %d", p.getInventory().toPlayerString(), p.getScore()));

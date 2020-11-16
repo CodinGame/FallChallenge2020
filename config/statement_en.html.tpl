@@ -632,7 +632,11 @@
             <li> <var>delta0</var>, <var>delta1</var>, <var>delta2</var>, <var>delta3</var>: the four numbers describing
               the consumption/producion of ingredients for each tier.</li>
             <li> <var>price</var> the amount of rupees this will win you if this is a potion recipe, <const>0</const>
-              otherwise.</li>
+              otherwise.
+            <!-- BEGIN level3 level4 -->
+            This includes the urgency bonus.
+            <!-- END -->
+            </li>
 
             <!-- BEGIN level1 level2 -->
             <li> <var>tomeIndex</var>: ignore for this league.</li>
@@ -647,9 +651,13 @@
             <li> <var>tomeIndex</var> the index in the tome of this action if this is a tome spell, <const>-1</const>
               otherwise.
               Is
-              equal to the read-ahead tax to learn this spell.</li>
+              equal to the read-ahead tax to learn this spell.<br>
+            This is also the <b>value</b> of the urgency bonus if this is a potion recipe.</li>
             <li> <var>taxCount</var> the amount of tier-0 ingredients you will gain by learning this spell if this is a
-              tome spell, <const>0</const> otherwise.</li>
+              tome spell, <const>0</const> otherwise.
+              <br>
+              This is also the <b>amount</b> of times an urgency bonus can still be gained if this is a potion recipe.
+            </li>
             <!-- END -->
             <!-- BEGIN level2 level3 level4 -->
 

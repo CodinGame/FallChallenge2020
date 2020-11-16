@@ -13,8 +13,8 @@ delta1: tier-1 ingredient change
 delta2: tier-2 ingredient change
 delta3: tier-3 ingredient change
 price: the price in rupees if this is a potion
-tomeIndex: in the first two leagues: always 0; later: the index in the tome if this is a tome spell, equal to the read-ahead tax
-taxCount: in the first two leagues: always 0; later: the amount of taxed tier-0 ingredients you gain from learning this spell
+tomeIndex: in the first two leagues: always 0; later: the index in the tome if this is a tome spell, equal to the read-ahead tax; For brews, this is the value of the current urgency bonus
+taxCount: in the first two leagues: always 0; later: the amount of taxed tier-0 ingredients you gain from learning this spell; For brews, this is how many times you can still gain an urgency bonus
 castable: in the first league: always 0; later: 1 if this is a castable player spell
 repeatable: for the first two leagues: always 0; later: 1 if this is a repeatable player spell
 inv0: tier-0 ingredients in inventory

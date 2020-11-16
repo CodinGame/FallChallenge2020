@@ -652,7 +652,11 @@
             </li>
             <li> <var>delta0</var>, <var>delta1</var>, <var>delta2</var>, <var>delta3</var>: les quatre entiers décrivant la production/consommation de chaque type d'ingrédient.</li>
             <li> <var>price</var> le nombre de rubis que fera gagner cette action s'il s'agit d'une commande, <const>0</const>
-              sinon.</li>
+              sinon.
+              <!-- BEGIN level3 level4 -->
+              Inclut le bonus d'urgence.
+              <!-- END -->
+              </li>
 
             <!-- BEGIN level1 level2 -->
             <li> <var>tomeIndex</var>: ignorer pour cette ligue.</li>
@@ -668,9 +672,12 @@
             <!-- BEGIN level3 level4 -->
             <li> <var>tomeIndex</var> la position dans la liste des sorts disponibles dans le grimoire s'il s'agit d'un sort du grimoire, <const>-1</const>
               sinon.
-              Est égal à la taxe de lecture-d'avance pour apprendre ce sort.</li>
-            <li> <var>taxCount</var> 
-              la quantité d'ingrédients de type 0 que vous recevrez en apprenant ce sort, s'il s'agit d'un sort du grimoire, <const>0</const> sinon.</li>
+              Est égal à la taxe de lecture-d'avance pour apprendre ce sort.<br>
+            C'est aussi la <b>valeur</b> du bonus d'urgence s'il sagit d'une commande.</li>
+            <li> <var>taxCount</var>
+              la quantité d'ingrédients de type 0 que vous recevrez en apprenant ce sort, s'il s'agit d'un sort du grimoire, <const>0</const> sinon.
+            <br>C'est aussi le <b>nombre</b> de fois que le bonus d'urgence peut encore être récupéré s'il s'agit d'une commande.</li>
+
             <!-- END -->
             <!-- BEGIN level2 level3 level4 -->
 
