@@ -193,20 +193,21 @@ export function updateInventories (previous, current, progress) {
 
         case EV_LEARN: {
           let fromStockIdx = 0
+          const stockCount = event.acquired + event.lost
           if (event.acquired > 0) {
             sortStart = event.animData[animIdx].start
             sortEnd = event.animData[animIdx].end
 
             comes.forEach(ing => {
               const { start, end } = event.animData[animIdx++]
-              moveIngredientFromTome(ing, event.acquired, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
+              moveIngredientFromTome(ing, stockCount, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
             })
 
             if (fromStockIdx < event.acquired) {
               newIngredients = pushArrivingIngredient.bind(this)(stacks, 0, event.acquired - fromStockIdx)
               newIngredients.forEach(ing => {
                 const { start, end } = event.animData[animIdx++]
-                moveIngredientFromTome(ing, event.acquired, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
+                moveIngredientFromTome(ing, stockCount, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
               })
             }
 
@@ -217,7 +218,7 @@ export function updateInventories (previous, current, progress) {
           if (event.lost > 0) {
             for (let i = event.acquired; i < event.lost + event.acquired; i++) {
               const { start, end } = event.animData[animIdx++]
-              moveIngredientFromTomeToOblivion.bind(this)(event.lost + event.acquired, event.tomeIdx, i, start, end, progress)
+              moveIngredientFromTomeToOblivion.bind(this)(stockCount, event.tomeIdx, i, start, end, progress)
             }
           }
 
