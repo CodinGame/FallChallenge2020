@@ -1,8 +1,9 @@
 import { easeIn, ease, bell } from '../core/transitions.js'
 import { EV_CAST, EV_LEARN, EV_LEARN_PAY, EV_BREW } from './gameConstants.js'
 import { INVENTORY_INGREDIENT_SIZE, INVENTORY_POSITION, POT_POSITION, TOME_INGREDIENT_SIZE, OBLIVION_POSITION } from './assetConstants.js'
-import { setAnimationProgress, fit, getStockPosition } from './utils.js'
+import { setAnimationProgress, fit, getStockPosition, getStockPositionFromCenter } from './utils.js'
 import { unlerp, lerp, lerpPosition } from '../core/utils.js'
+import { WIDTH } from '../core/constants.js'
 
 /* globals PIXI */
 
@@ -39,12 +40,12 @@ function getArrivingIngredientIndex (stacks, type) {
   return stack.length === 0 ? 0 : stack[stack.length - 1].curShelfIdx + 1
 }
 
-function pushArrivingIngredient (stacks, type, count = 1) {
+function pushIngredients (stacks, type, count = 1) {
   if (count <= 0) {
     return []
   }
 
-  const newIngs = []
+  const ings = []
   let idx = getArrivingIngredientIndex(stacks, type)
 
   for (let i = 0; i < count; i++) {
@@ -55,7 +56,7 @@ function pushArrivingIngredient (stacks, type, count = 1) {
       prevShelfIdx: idx,
       curShelfIdx: idx++
     }
-    newIngs.push(newIng)
+    ings.push(newIng)
     stacks[type].push(newIng)
   }
 
@@ -66,28 +67,42 @@ function pushArrivingIngredient (stacks, type, count = 1) {
     })
   }
 
-  return newIngs
+  return ings
 }
 
-function popArrivingIngredientIndex (stacks, type, count = 1) {
+function popIngredients (stacks, type, count = 1) {
   if (count <= 0) {
     return []
   }
 
-  const oldIngs = []
-  for (let i = count; i > 0 && stacks[type].length > 0; i--) {
-    oldIngs.push(stacks[type].pop())
+  const ings = []
+  let idx = -1
+  for (let i = stacks[type].length - 1; i > 0; i--) {
+    if (!stacks[type][i].arriving && !stacks[type][i].leaving) {
+      const ing = stacks[type].splice(i, 1)[0]
+      ing.leaving = true
+      ings.push(ing)
+      idx = i
+      if (ings.length >= count) {
+        break
+      }
+    }
   }
 
-  let idx = stacks[type].length
+  idx = idx < 0 ? stacks[type].length : idx
+
+  for (; idx < stacks[type].length; idx++) {
+    const ing = stacks[type][idx]
+    ing.curShelfIdx = idx
+  }
+
   for (let typeIdx = type + 1; typeIdx < stacks.length; typeIdx++) {
     stacks[typeIdx].forEach(ing => {
-      ing.prevShelfIdx = ing.curShelfIdx
       ing.curShelfIdx = idx++
     })
   }
 
-  return oldIngs
+  return ings
 }
 
 function updateInventory (stacks, playerIdx, start, end, progress) {
@@ -147,11 +162,11 @@ export function updateInventories (previous, current, progress) {
     const comes = stacks.flatMap(stack => stack.filter(ing => ing.arriving))
     const leaves = stacks.flatMap(stack => stack.filter(ing => ing.leaving))
 
-    let newIngredients = []
     let sortStart = 0
     let sortEnd = 1
-
+    let lastLeavesEnd = null
     let hasUpdatedInventory = false
+    const rolls = []
 
     events.forEach(event => {
       let animIdx = 0
@@ -194,25 +209,36 @@ export function updateInventories (previous, current, progress) {
         case EV_LEARN: {
           let fromStockIdx = 0
           const stockCount = event.acquired + event.lost
+
+          if (event.tomeIdx > 0) {
+            if (event.tomeIdx > leaves.length) {
+              popIngredients(stacks, 0, event.tomeIdx - leaves.length).forEach(ing => {
+                leaves.push(ing)
+              })
+            }
+
+            leaves.forEach(ing => {
+              const { start, end } = event.animData[animIdx++]
+              lastLeavesEnd = end
+              moveIngredientToStock(ing, event.tomeIdx, event.playerIdx, start, end, progress, easeIn)
+              rolls.push({ ing, end })
+            })
+          }
+
+          sortStart = event.animData[animIdx].start
+          sortEnd = event.animData[animIdx].end
+
           if (event.acquired > 0) {
-            sortStart = event.animData[animIdx].start
-            sortEnd = event.animData[animIdx].end
+            if (event.acquired > comes.length) {
+              pushIngredients.bind(this)(stacks, 0, event.acquired - comes.length).forEach(ing => {
+                comes.push(ing)
+              })
+            }
 
             comes.forEach(ing => {
               const { start, end } = event.animData[animIdx++]
               moveIngredientFromTome(ing, stockCount, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
             })
-
-            if (fromStockIdx < event.acquired) {
-              newIngredients = pushArrivingIngredient.bind(this)(stacks, 0, event.acquired - fromStockIdx)
-              newIngredients.forEach(ing => {
-                const { start, end } = event.animData[animIdx++]
-                moveIngredientFromTome(ing, stockCount, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
-              })
-            }
-
-            updateInventory(stacks, playerIdx, sortStart, sortEnd, progress)
-            hasUpdatedInventory = true
           }
 
           if (event.lost > 0) {
@@ -221,6 +247,9 @@ export function updateInventories (previous, current, progress) {
               moveIngredientFromTomeToOblivion.bind(this)(stockCount, event.tomeIdx, i, start, end, progress)
             }
           }
+
+          updateInventory(stacks, playerIdx, sortStart, sortEnd, progress)
+          hasUpdatedInventory = true
 
           animIdx++
           break
@@ -231,21 +260,19 @@ export function updateInventories (previous, current, progress) {
             break
           }
 
-          sortStart = event.animData[animIdx].start
-          sortEnd = event.animData[animIdx].end
-
-          leaves.forEach(ingredient => {
-            const { start, end } = event.animData[animIdx++]
-            moveIngredientToTome(ingredient, stockPoses, event.playerIdx, stockIdx++, start, end, progress)
+          let idx = rolls.length - 1
+          rolls.forEach(roll => {
+            if (progress >= roll.end) {
+              moveIngredientRolling(roll.ing, event.tomeIdx, event.playerIdx, idx--, roll.end, event.animData[animIdx].start, progress)
+            }
           })
 
-          if (progress > sortStart) {
-            popArrivingIngredientIndex(stacks, 0, newIngredients.length).forEach(ing => {
+          if (progress >= event.animData[animIdx].start) {
+            idx = rolls.length - 1
+            leaves.forEach(ingredient => {
               const { start, end } = event.animData[animIdx++]
-              moveIngredientToTome(ing, stockPoses, event.playerIdx, stockIdx++, start, end, progress)
+              moveIngredientToTome(ingredient, event.tomeIdx, idx--, stockPoses, event.playerIdx, stockIdx++, start, end, progress)
             })
-            updateInventory(stacks, playerIdx, sortStart, sortEnd, progress)
-            hasUpdatedInventory = true
           }
 
           break
@@ -312,6 +339,39 @@ function funkyLerp (fromPos, toPos, u, invert) {
   }
 }
 
+const STOCK_POSITION = [
+  { x: 700, y: 400 },
+  { x: WIDTH - 700, y: 400 }
+]
+
+function moveIngredientToStock (ingredient, stockCount, playerIdx, start, end, progress, transisiton = ease) {
+  const fromPos = INVENTORY_POSITION[playerIdx][ingredient.prevShelfIdx]
+  const center = STOCK_POSITION[playerIdx]
+  const toPos = getStockPositionFromCenter(center, 0, stockCount)
+
+  const fromScale = INVENTORY_INGREDIENT_SIZE
+  const toScale = TOME_INGREDIENT_SIZE
+
+  moveIngredient(ingredient, start, end, progress, fromPos, toPos, transisiton)
+  lerpFitBell(ingredient, start, end, progress, fromScale, toScale)
+}
+
+function moveIngredientRolling (ingredient, stockCount, playerIdx, idx, start, end, progress) {
+  const center = STOCK_POSITION[playerIdx]
+
+  const increment = 2 * Math.PI / stockCount
+  const radius = (stockCount === 1 ? 0 : 20)
+  const animProgress = unlerp(start, end, progress)
+  const adv = lerp(0, increment * idx + 2 * Math.PI, animProgress)
+
+  const pos = {
+    x: center.x + radius * Math.cos(adv),
+    y: center.y + radius * Math.sin(adv)
+  }
+
+  ingredient.sprite.position.copy(pos)
+}
+
 function moveIngredientToPot (ingredient, playerIdx, start, end, progress, transition = ease) {
   if (progress > end) {
     ingredient.sprite.visible = false
@@ -323,7 +383,7 @@ function moveIngredientToPot (ingredient, playerIdx, start, end, progress, trans
   moveIngredient(ingredient, start, end, progress, fromPos, toPos, transition)
 }
 
-function moveIngredientFromPot (ingredient, playerIdx, start, end, progress, transition = ease, sort = false) {
+function moveIngredientFromPot (ingredient, playerIdx, start, end, progress, transition = ease) {
   if (progress < start) {
     ingredient.sprite.visible = false
   }
@@ -365,11 +425,12 @@ function calculateStocksPoses (previous, current) {
   return globalStocksPoses
 }
 
-function moveIngredientToTome (ingredient, stockPoses, playerIdx, stockIdx, start, end, progress, transition = ease) {
-  const fromPos = INVENTORY_POSITION[playerIdx][ingredient.prevShelfIdx]
+function moveIngredientToTome (ingredient, stockCount, idx, stockPoses, playerIdx, stockIdx, start, end, progress, transition = ease) {
+  const center = STOCK_POSITION[playerIdx]
+  const fromPos = getStockPositionFromCenter(center, idx, stockCount)
   const toPos = stockIdx < stockPoses.length ? stockPoses[stockIdx] : OBLIVION_POSITION
 
-  const fromScale = INVENTORY_INGREDIENT_SIZE
+  const fromScale = TOME_INGREDIENT_SIZE
   const toScale = TOME_INGREDIENT_SIZE
 
   moveIngredient(ingredient, start, end, progress, fromPos, toPos, transition, lerpPosition)

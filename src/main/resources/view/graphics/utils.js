@@ -11,8 +11,7 @@ export function fit (entity, maxWidth, maxHeight) {
   entity.scale.set(utils.fitAspectRatio(entity.texture.width, entity.texture.height, maxWidth, maxHeight))
 }
 
-export function getStockPosition (tomeIdx, index, stockCount) {
-  const center = TOME_STOCKS_POSITION[tomeIdx]
+export function getStockPositionFromCenter (center, index, stockCount) {
   const increment = 2 * Math.PI / stockCount
   const radius = (stockCount === 1 ? 0 : 20)
 
@@ -22,6 +21,11 @@ export function getStockPosition (tomeIdx, index, stockCount) {
   }
 
   return position
+}
+
+export function getStockPosition (tomeIdx, index, stockCount) {
+  const center = TOME_STOCKS_POSITION[tomeIdx]
+  return getStockPositionFromCenter(center, index, stockCount)
 }
 
 export function applyOffsets (position, widthOffset, heightOffset) {

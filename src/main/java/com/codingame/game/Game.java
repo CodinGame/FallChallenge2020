@@ -172,7 +172,7 @@ public class Game {
         if (getBonusAmount(spell) == 0) {
             return 0;
         }
-        
+
         int index = deliveries.indexOf(spell);
 
         if (index < 0 || index > 1) {
@@ -453,11 +453,16 @@ public class Game {
 
             } else if (event.type == EventData.LEARN) {
                 event.animData = new ArrayList<>();
+                chainAnims(
+                    event.tomeIdx, event.animData, playerTime, event.playerIdx, AnimationData.SHELF_TO_STOCK_DURATION,
+                    AnimationData.SHELF_TO_STOCK_SEPARATION
+                );
                 waitForAnim(event.animData, playerTime, event.playerIdx, AnimationData.TOME_TO_LEARNT_DURATION);
                 chainAnims(
                     event.acquired + event.lost, event.animData, playerTime, event.playerIdx, AnimationData.TOME_TO_SHELF_DURATION,
                     AnimationData.TOME_TO_SHELF_DURATION
                 );
+
                 learnEvents.add(event);
             } else if (event.type == EventData.RESET) {
                 event.animData = new ArrayList<>();

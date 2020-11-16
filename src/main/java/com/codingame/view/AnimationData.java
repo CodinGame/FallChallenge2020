@@ -14,6 +14,8 @@ public class AnimationData {
     public static final int POT_TO_SHELF_SEPERATION = SHELF_TO_POT_SEPERATION;
     public static final int SHELF_TO_TOME_DURATION = LONG;
     public static final int SHELF_TO_TOME_SEPARATION = SHORT;
+    public static final int SHELF_TO_STOCK_DURATION = QUICK;
+    public static final int SHELF_TO_STOCK_SEPARATION = SHORT;
     public static final int TOME_TO_SHELF_DURATION = LONG;
     public static final int TOME_TO_SHELF_SEPARATION = SHORT;
     public static final int TOME_TO_LEARNT_DURATION = LONG;
