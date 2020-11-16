@@ -104,10 +104,21 @@ export class ViewModule {
       this.hudLayer.addChild(container)
       container.scale.set(0.4)
 
-      return {
+      const bonus = {
         container,
         text
       }
+
+      Object.defineProperty(bonus, 'visible', {
+        set: (value) => {
+          container.visible = value
+        },
+        get: () => {
+          return container.visible
+        }
+      })
+
+      return bonus
     } else {
       return new PIXI.Container()
     }

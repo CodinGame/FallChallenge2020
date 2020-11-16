@@ -47,14 +47,18 @@ const BONUS_OFFSET = {
   x: 209,
   y: 40
 }
+
 export function updateBonus (previous, current, progress) {
   const total = previous.deliveries.length
   for (let bonusIdx = 0; bonusIdx < 2; ++bonusIdx) {
     const bonusData = previous.bonus[bonusIdx]
+
     if (bonusData != null) {
+      const moving = bonusData?.value !== current.bonus[bonusIdx]?.value
       const bonus = this.getFromPool('bonus')
       bonus.text.text = `+${bonusData.value}`
       bonus.container.alpha = 1
+      bonus.container.visible = true
       bonus.container.position.set(
         COUNTER_X + bonusIdx * (COUNTER_WIDTH / total) + BONUS_OFFSET.x,
         COUNTER_Y + BONUS_OFFSET.y
@@ -66,12 +70,45 @@ export function updateBonus (previous, current, progress) {
         .filter(e => e.type === EV_BREW)
         .filter(e => e.spellId === spellId)
         .forEach(e => {
-          const idx = previous.deliveries.indexOf(spellId)
-
           const animData = e.animData[e.animData.length - 1]
           const animProgress = utils.unlerp(animData.start, animData.end, progress)
           bonus.container.alpha = 1 - animProgress
         })
+
+      const newPotionEvents = current.events
+        .filter(e => e.type === EV_NEW_POTIONS)
+
+      if (moving) {
+        newPotionEvents.forEach(e => {
+          const fromIdx = previous.deliveries.indexOf(spellId)
+          const toIdx = current.deliveries.indexOf(spellId)
+          if (fromIdx === -1 || toIdx === -1) {
+            return
+          }
+
+          const animData = e.animData[0]
+          const end = (animData.end + animData.start) / 2
+
+          const animProgress = utils.unlerp(animData.start, end, progress)
+
+          bonus.container.position.set(
+            COUNTER_X + utils.lerp(fromIdx, toIdx, animProgress) * (COUNTER_WIDTH / total) + BONUS_OFFSET.x,
+            COUNTER_Y + BONUS_OFFSET.y
+          )
+        })
+      } else {
+        newPotionEvents.forEach(e => {
+          const animData = e.animData[0]
+          const end = (animData.end + animData.start) / 2
+
+          const animProgress = utils.unlerp(animData.start, end, progress)
+
+          bonus.container.visible = (animProgress <= 0 || animProgress >= 1)
+          if (animProgress >= 1) {
+            bonus.container.alpha = 1
+          }
+        })
+      }
     }
   }
 }
