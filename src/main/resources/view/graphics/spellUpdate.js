@@ -471,6 +471,7 @@ export function updateTomeSpells (previous, current, progress) {
       animIdx++
     })
 
+  animIdx = 0
   current.events.filter(event => event.type === EV_LEARN)
     .forEach(event => {
       const tomeSpell = tomeSpells[event.spellId]
@@ -488,14 +489,10 @@ export function updateTomeSpells (previous, current, progress) {
 
   current.events.filter(event => event.type === EV_LEARN_PAY && event.tomeIdx !== 0)
     .forEach(event => {
-      animIdx = 0
+      const { start, end } = event.animData[0]
+      const animProgress = utils.unlerp(start, end, progress)
       tomeSpells.filter(tomeSpell => tomeSpell.hasGainedStock)
         .forEach(tomeSpell => {
-          const { start, end } = event.animData[animIdx]
-          animIdx++
-
-          const animProgress = utils.unlerp(start, end, progress)
-
           if (animProgress > 0) {
             moveTomeSpellStocks(tomeSpell, animProgress, true)
           }
