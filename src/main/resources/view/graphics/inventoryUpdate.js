@@ -164,7 +164,6 @@ export function updateInventories (previous, current, progress) {
 
     let sortStart = 0
     let sortEnd = 1
-    let lastLeavesEnd = null
     let hasUpdatedInventory = false
     const rolls = []
 
@@ -208,6 +207,7 @@ export function updateInventories (previous, current, progress) {
 
         case EV_LEARN: {
           let fromStockIdx = 0
+          let lastValidAnimData = { start: 0, end: 1 }
           const stockCount = event.acquired + event.lost
 
           if (event.tomeIdx > 0) {
@@ -218,15 +218,15 @@ export function updateInventories (previous, current, progress) {
             }
 
             leaves.forEach(ing => {
-              const { start, end } = event.animData[animIdx++]
-              lastLeavesEnd = end
+              const { start, end } = event.animData[animIdx++] || lastValidAnimData
+              lastValidAnimData = { start, end }
               moveIngredientToStock(ing, event.tomeIdx, event.playerIdx, start, end, progress, easeIn)
               rolls.push({ ing, end })
             })
           }
 
-          sortStart = event.animData[animIdx].start
-          sortEnd = event.animData[animIdx].end
+          sortStart = event.animData[animIdx]?.start || lastValidAnimData.start
+          sortEnd = event.animData[animIdx]?.end || lastValidAnimData.end
 
           if (event.acquired > 0) {
             if (event.acquired > comes.length) {
@@ -236,14 +236,16 @@ export function updateInventories (previous, current, progress) {
             }
 
             comes.forEach(ing => {
-              const { start, end } = event.animData[animIdx++]
+              const { start, end } = event.animData[animIdx++] || lastValidAnimData
+              lastValidAnimData = { start, end }
               moveIngredientFromTome(ing, stockCount, event.tomeIdx, event.playerIdx, fromStockIdx++, start, end, progress, ease)
             })
           }
 
           if (event.lost > 0) {
             for (let i = event.acquired; i < event.lost + event.acquired; i++) {
-              const { start, end } = event.animData[animIdx++]
+              const { start, end } = event.animData[animIdx++] || lastValidAnimData
+              lastValidAnimData = { start, end }
               moveIngredientFromTomeToOblivion.bind(this)(stockCount, event.tomeIdx, i, start, end, progress)
             }
           }
