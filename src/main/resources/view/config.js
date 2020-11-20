@@ -28,7 +28,7 @@ export const options = [
       return api.options.hideExhaustedSpells
     },
     set: function (value) {
-      if (api.options.hideExhaustedSpells !== value) {
+      if (api.viewModule && api.options.hideExhaustedSpells !== value) {
         api.options.hideExhaustedSpells = value
         api.updateSpells(api)
       }
