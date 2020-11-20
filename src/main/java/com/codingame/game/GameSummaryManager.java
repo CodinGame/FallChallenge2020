@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.codingame.game.spell.Spell;
+import com.codingame.gameengine.core.GameManager;
 import com.google.inject.Singleton;
 
 @Singleton
@@ -111,6 +112,7 @@ public class GameSummaryManager {
                     player.getNicknameToken(),
                     errorMessage
                 )
+
             );
         } else {
             lines.add(
@@ -119,27 +121,32 @@ public class GameSummaryManager {
                     player.getNicknameToken(),
                     errorMessage
                 )
+
             );
         }
     }
 
     public void addPlayerBadCommand(Player player, InvalidInputException invalidInputException) {
         lines.add(
-            String.format(
-                "%s provided invalid input. Expected '%s'\nGot '%s'",
-                player.getNicknameToken(),
-                invalidInputException.getExpected(),
-                invalidInputException.getGot()
+            GameManager.formatErrorMessage(
+                String.format(
+                    "%s provided invalid input. Expected '%s'\nGot '%s'",
+                    player.getNicknameToken(),
+                    invalidInputException.getExpected(),
+                    invalidInputException.getGot()
+                )
             )
         );
     }
 
     public void addPlayerTimeout(Player player) {
         lines.add(
-            String.format(
-                "%s has not provided %d lines in time.",
-                player.getNicknameToken(),
-                player.getExpectedOutputLines()
+            GameManager.formatErrorMessage(
+                String.format(
+                    "%s has not provided %d lines in time.",
+                    player.getNicknameToken(),
+                    player.getExpectedOutputLines()
+                )
             )
         );
     }
