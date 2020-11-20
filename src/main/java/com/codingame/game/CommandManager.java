@@ -90,7 +90,11 @@ public class CommandManager {
             deactivatePlayer(player, e.getMessage());
             gameSummaryManager.addPlayerBadCommand(player, e);
             gameSummaryManager.addPlayerDisqualified(player);
-            return;
+        } catch (Exception e) {
+            InvalidInputException invalidInputException = new InvalidInputException(Game.getExpected(), e.toString());
+            deactivatePlayer(player, invalidInputException.getMessage());
+            gameSummaryManager.addPlayerBadCommand(player, invalidInputException);
+            gameSummaryManager.addPlayerDisqualified(player);
         }
 
     }
